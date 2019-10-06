@@ -4,20 +4,23 @@ provider "aws" {
   version = "~> 2.27"
 }
 
-module "work_queue" {
-  source      = "./sqs-with-backoff"
-  queue_name  = "work-queue"
+resource "aws_security_group" "group_1" {
+  name = "security group 1"
 }
 
-output "work_queue_name" {
-  value = module.work_queue.queue_name
+resource "aws_security_group" "group_2" {
+  name = "security group 2"
 }
 
-output "work_queue_dead_letter_name" {
-  value = module.work_queue.dead_letter_queue_name
+resource "aws_security_group" "group_3" {
+  name = "security group 3"
 }
 
-module "thread_queue" {
-  source      = "./sqs-with-backoff"
-  queue_name  = "thread-queue"
+module "cross_talk_groups" {
+  source            = "./cross-talk-3-way"
+  security_group_1  = aws_security_group.group_1
+  security_group_2  = aws_security_group.group_2
+  security_group_3  = aws_security_group.group_3
+  port              = 8500
+  protocol          = "tcp"
 }

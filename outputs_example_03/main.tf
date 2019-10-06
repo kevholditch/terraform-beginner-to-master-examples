@@ -18,3 +18,7 @@ output "bucket_arn" {
 output "bucket_information" {
   value = "bucket name: ${aws_s3_bucket.first_bucket.id}, bucket arn: ${aws_s3_bucket.first_bucket.arn}"
 }
+
+output "all" {
+  value = aws_s3_bucket.first_bucket
+}
