@@ -5,7 +5,7 @@ provider "aws" {
 
 
 resource "aws_s3_bucket" "first_bucket" {
-  bucket = "kevholditch-first-bucket"
+  bucket = "kevholditch-first-bucket333"
   acl    = "private"
 
   versioning {
