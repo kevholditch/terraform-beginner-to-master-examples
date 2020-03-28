@@ -5,8 +5,8 @@ provider "aws" {
 
 locals {
   first_part  = "hello"
-  second_part = "${local.first_part}_there"
-  bucket_name = "${local.second_part}_how_are_you_today"
+  second_part = "${local.first_part}-there"
+  bucket_name = "${local.second_part}-how-are-you-today"
 }
 
 resource "aws_s3_bucket" "bucket" {
