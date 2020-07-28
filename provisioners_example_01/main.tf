@@ -65,8 +65,8 @@ resource "aws_key_pair" "keypair" {
 }
 
 data "aws_ami" "ami" {
-  most_recent      = true
-  owners           = ["amazon"]
+  most_recent = true
+  owners      = ["amazon"]
 
   filter {
     name   = "name"
