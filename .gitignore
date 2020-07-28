@@ -3,3 +3,5 @@
 .terraform/
 *.tfstate
 *.backup
+nginx_key
+nginx_key.pub

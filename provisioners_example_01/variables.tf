@@ -1,0 +1,2 @@
+
+variable "my_ip" {}
