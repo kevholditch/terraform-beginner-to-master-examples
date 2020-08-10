@@ -80,23 +80,17 @@ resource "aws_instance" "nginx" {
   subnet_id              = aws_subnet.public.id
   vpc_security_group_ids = [aws_security_group.rules.id]
   key_name               = aws_key_pair.keypair.key_name
+  user_data = <<EOF
+    #!/bin/bash
+    set -ex
 
+    yum update -y
+    amazon-linux-extras enable nginx1.12
+    yum -y install nginx
+    chmod 777 /usr/share/nginx/html/index.html
+    echo "Hello from nginx on AWS" > /usr/share/nginx/html/index.html
+    systemctl start nginx
+EOF
 
-  provisioner "remote-exec" {
-    inline = [
-      "sudo amazon-linux-extras enable nginx1.12",
-      "sudo yum -y install nginx",
-      "sudo chmod 777 /usr/share/nginx/html/index.html",
-      "echo \"Hello from nginx on AWS\" > /usr/share/nginx/html/index.html",
-      "sudo systemctl start nginx",
-    ]
-  }
-
-  connection {
-    host        = aws_instance.nginx.public_ip
-    type        = "ssh"
-    user        = "ec2-user"
-    private_key = file("nginx_key")
-  }
 }
 
