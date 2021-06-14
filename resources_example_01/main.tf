@@ -1,7 +1,9 @@
 
 provider "aws" {
-  region = "eu-west-1"
+  region  = "eu-west-1"
+  version = "~> 2.27"
 }
+
 
 
 resource "aws_s3_bucket" "first_bucket" {
