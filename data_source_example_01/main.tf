@@ -1,7 +1,6 @@
 
 provider "aws" {
   region  = "eu-west-1"
-  version = "~> 2.27"
 }
 
 data "aws_s3_bucket" "bucket" {

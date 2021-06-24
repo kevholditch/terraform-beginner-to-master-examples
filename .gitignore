@@ -5,3 +5,4 @@
 *.backup
 nginx_key
 nginx_key.pub
+.terraform.lock.hcl

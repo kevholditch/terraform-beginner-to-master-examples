@@ -1,7 +1,6 @@
 
 provider "aws" {
   region  = "eu-west-1"
-  version = "~> 2.27"
 }
 
 resource "aws_security_group" "group_1" {
